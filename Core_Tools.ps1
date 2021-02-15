@@ -209,7 +209,10 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 ###############################################################################
 # Set up Chocolatey
 Write-Host "Initializing chocolatey"
-
+$toolsDir         = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+$cache            =  "${Env:UserProfile}\AppData\Local\ChocoCache"
+$globalCinstArgs  = "--cacheLocation $cache -y"
+#$pkgPath          = Join-Path $toolsDir "packages.json"
 
 $fireeyeFeed      = "https:/www.myget.org/F/fireeye/api/v2"
 $flareFeed        = "https://www.myget.org/F/fireeye/api/v2"
